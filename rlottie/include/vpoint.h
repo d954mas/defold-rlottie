@@ -107,7 +107,7 @@ inline VPointF &VPointF::operator-=(const VPointF &p) noexcept
 class VPoint {
 public:
     VPoint() = default;
-    constexpr inline VPoint(int x, int y) noexcept : mx(x), my(y) {}
+    VPoint(int x, int y) noexcept : mx(x), my(y) {}
     constexpr inline int  x() const noexcept { return mx; }
     constexpr inline int  y() const noexcept { return my; }
     inline void           setX(int x) { mx = x; }
