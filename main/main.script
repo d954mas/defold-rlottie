@@ -1,6 +1,20 @@
 function init(self)
 	print("test")
-	lottie.test()
+	self.buffer = buffer.create(100 * 100, -- size of the buffer width*height
+			{{
+				 name = hash("my_buffer"),
+				 type = buffer.VALUE_TYPE_UINT8,
+				 count = 4
+			 }})
+	lottie.test(100,100,self.buffer)
+	self.resource_path = go.get("#sprite", "texture0")
+	self.header = {
+		width = 100,
+		height = 100,
+		type = resource.TEXTURE_TYPE_2D,
+		format = resource.TEXTURE_FORMAT_RGBA,
+		num_mip_maps = 1
+	}
 end
 
 function final(self)
@@ -9,8 +23,7 @@ function final(self)
 end
 
 function update(self, dt)
-	-- Add update code here
-	-- Remove this function if not needed
+	resource.set_texture(self.resource_path, self.header, self.buffer)
 end
 
 function on_message(self, message_id, message, sender)

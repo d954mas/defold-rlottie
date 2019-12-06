@@ -36,6 +36,7 @@ extern "C" {
  * exported function wrapper from the library
  */
 
+///@DEFOLD NOT COMPILE IF UNCOMMENT. CAN'T LOAD FROM FILE SYSTEM???
 LOT_EXPORT unsigned char *lottie_image_load(char const *filename, int *x,
                                             int *y, int *comp, int req_comp)
 {

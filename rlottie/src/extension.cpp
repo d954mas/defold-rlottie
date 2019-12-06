@@ -9,7 +9,10 @@
 #include "rlottie_extension.h"
 
 static int LuaTest(lua_State* L){
-    RlottieTest();
+    int width = (int)luaL_checknumber(L, 1);
+    int height = (int)luaL_checknumber(L, 2);
+    dmScript::LuaHBuffer* buffer = dmScript::CheckBuffer(L, 3);
+    RlottieTest(width,height,buffer);
     printf("RLOTTIE\n");
     return 0;
 }
