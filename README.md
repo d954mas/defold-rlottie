@@ -1,13 +1,9 @@
-# Welcome to Defold
+Rlottie for defold
 
-This project was created from the "empty" project template.
+https://github.com/Samsung/rlottie
 
-The settings in ["game.project"](defold://open?path=/game.project) are all the default. A bootstrap empty ["main.collection"](defold://open?path=/main/main.collection) is included.
+Demo
 
-Check out [the documentation pages](https://defold.com/learn) for examples, tutorials, manuals and API docs.
-
-If you run into trouble, help is available in [our forum](https://forum.defold.com).
-
-Happy Defolding!
+https://d954mas.github.io/defold-rlottie/
 
 ---
