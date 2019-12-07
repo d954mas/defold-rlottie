@@ -217,18 +217,19 @@ public:
     Int i{0};
 };
 
+//@DEFOLD FIXED BAD COLOR. WHEN DRAW TO BUFFER RED AND BLUE IS SWAPPED. SO I SWAPPED COLORS HERE
 class VColor {
 public:
     VColor() = default;
     explicit VColor(uchar red, uchar green, uchar blue, uchar alpha = 255) noexcept
-        :a(alpha), r(red), g(green), b(blue){}
+        :a(alpha), b(red), g(green), r(blue){}
     inline uchar  red() const noexcept { return r; }
     inline uchar  green() const noexcept { return g; }
     inline uchar  blue() const noexcept { return b; }
     inline uchar  alpha() const noexcept { return a; }
-    inline void setRed(uchar red) noexcept { r = red; }
+    inline void setRed(uchar red) noexcept { b = red; }
     inline void setGreen(uchar green) noexcept { g = green; }
-    inline void setBlue(uchar blue) noexcept { b = blue; }
+    inline void setBlue(uchar blue) noexcept { r = blue; }
     inline void setAlpha(uchar alpha) noexcept { a = alpha; }
     inline bool isOpaque() const { return a == 255; }
     inline bool isTransparent() const { return a == 0; }
