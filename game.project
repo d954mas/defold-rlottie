@@ -13,4 +13,10 @@ input_method = HiddenInputField
 
 [project]
 title = rlottie
+custom_resources = /resource/
+bundle_resources = 
+dependencies = https://github.com/britzl/gooey/archive/8.0.0.zip
+
+[html5]
+htmlfile = /engine_template.html
 

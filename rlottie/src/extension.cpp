@@ -1,4 +1,6 @@
 // myextension.cpp
+
+
 // Extension lib defines
 #define EXTENSION_NAME lottie
 #define LIB_NAME "lottie"
@@ -17,7 +19,7 @@ static int LuaTest(lua_State* L){
     int height = (int)luaL_checknumber(L, 2);
     dmScript::LuaHBuffer* buffer = dmScript::CheckBuffer(L, 3);
     RlottieTest(width,height,buffer);
-    printf("RLOTTIE\n");
+
     return 0;
 }
 
@@ -31,12 +33,9 @@ static rlottie::Animation* AnimationLoadFromData(lua_State* L){
 }
 
 static rlottie::Surface SurfaceCreate(int w, int h, lua_State* L){
-    printf("create: %d %d",w,h);
     dmScript::LuaHBuffer* lbuffer = dmScript::CheckBuffer(L, 3);
     Buffer buf = BufferCreate(w,h,4,lbuffer);
     rlottie::Surface surface(((uint32_t*)buf.stream), w, h ,  w * 4);
-
-    printf("create result: %zu %zu",surface.width(),surface.height());
     return surface;
 }
 

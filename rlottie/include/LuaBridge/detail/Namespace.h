@@ -38,7 +38,7 @@
 
 #include <stdexcept>
 #include <string>
-
+#include "fix_exceptions.h"
 namespace luabridge {
 
 namespace detail {
@@ -101,7 +101,7 @@ protected:
   {
     if (m_stackSize == 0)
     {
-      throw std::logic_error ("Unable to continue registration");
+      __throw std::logic_error ("Unable to continue registration");
     }
   }
 };
@@ -393,7 +393,7 @@ class Namespace : public detail::Registrar
       if (lua_isnil (L, -1)) // Stack: ns, co, cl, st, nil
       {
         ++m_stackSize;
-        throw std::runtime_error ("Base class is not registered");
+        __throw std::runtime_error ("Base class is not registered");
       }
 
       assert (lua_istable (L, -1)); // Stack: ns, co, cl, st, pst
@@ -800,7 +800,7 @@ class Namespace : public detail::Registrar
       static const std::string GC = "__gc";
       if (name == GC)
       {
-        throw std::logic_error (GC + " metamethod registration is forbidden");
+        __throw std::logic_error (GC + " metamethod registration is forbidden");
       }
       CFunc::CallMemberFunctionHelper <MemFn, false>::add (L, name, mf);
       return *this;
@@ -816,7 +816,7 @@ class Namespace : public detail::Registrar
       static const std::string GC = "__gc";
       if (name == GC)
       {
-        throw std::logic_error (GC + " metamethod registration is forbidden");
+        __throw std::logic_error (GC + " metamethod registration is forbidden");
       }
       CFunc::CallMemberFunctionHelper <MemFn, true>::add (L, name, mf);
       return *this;
@@ -834,7 +834,7 @@ class Namespace : public detail::Registrar
       static const std::string GC = "__gc";
       if (name == GC)
       {
-        throw std::logic_error (GC + " metamethod registration is forbidden");
+        __throw std::logic_error (GC + " metamethod registration is forbidden");
       }
       using FnType = decltype (proxyFn);
       lua_pushlightuserdata (L, reinterpret_cast <void*> (proxyFn)); // Stack: co, cl, st, function ptr
@@ -851,7 +851,7 @@ class Namespace : public detail::Registrar
       static const std::string GC = "__gc";
       if (name == GC)
       {
-        throw std::logic_error (GC + " metamethod registration is forbidden");
+        __throw std::logic_error (GC + " metamethod registration is forbidden");
       }
       using FnType = decltype (proxyFn);
       lua_pushlightuserdata (L, reinterpret_cast <void*> (proxyFn)); // Stack: co, cl, st, function ptr
@@ -1054,7 +1054,7 @@ public:
   {
     if (m_stackSize == 1)
     {
-      throw std::logic_error ("endNamespace () called on global namespace");
+      __throw std::logic_error ("endNamespace () called on global namespace");
     }
 
     assert (m_stackSize > 1);
@@ -1082,7 +1082,7 @@ public:
   {
     if (m_stackSize == 1)
     {
-      throw std::logic_error ("addProperty () called on global namespace");
+      __throw std::logic_error ("addProperty () called on global namespace");
     }
 
     assert (lua_istable (L, -1)); // Stack: namespace table (ns)
@@ -1117,7 +1117,7 @@ public:
   {
     if (m_stackSize == 1)
     {
-      throw std::logic_error ("addProperty () called on global namespace");
+      __throw std::logic_error ("addProperty () called on global namespace");
     }
 
     assert (lua_istable (L, -1)); // Stack: namespace table (ns)
@@ -1150,7 +1150,7 @@ public:
   {
     if (m_stackSize == 1)
     {
-      throw std::logic_error ("addProperty () called on global namespace");
+      __throw std::logic_error ("addProperty () called on global namespace");
     }
 
     assert (lua_istable (L, -1)); // Stack: namespace table (ns)

@@ -30,7 +30,7 @@
 #pragma once
 
 #include <LuaBridge/detail/Config.h>
-
+#include "fix_exceptions.h"
 #ifdef LUABRIDGE_CXX11
 #include <functional>
 #endif
@@ -877,30 +877,36 @@ struct Invoke
   template <class Fn>
   static int run (lua_State* L, Fn& fn)
   {
-    try
+    __try
     {
       ArgList <Params, startParam> args (L);
       Stack <ReturnType>::push (L, FuncTraits <Fn>::call (fn, args));
       return 1;
     }
-    catch (const std::exception& e)
+    __catch (const std::exception& e)
     {
-      return luaL_error (L, e.what ());
+      #if __cpp_exceptions
+      luaL_error (L, e.what ());
+      #endif
+      return 0;
     }
   }
 
   template <class T, class MemFn>
   static int run (lua_State* L, T* object, const MemFn& fn)
   {
-    try
+    __try
     {
       ArgList <Params, startParam> args (L);
       Stack <ReturnType>::push (L, FuncTraits <MemFn>::call (object, fn, args));
       return 1;
     }
-    catch (const std::exception& e)
+    __catch (const std::exception& e)
     {
-      return luaL_error (L, e.what ());
+      #if __cpp_exceptions
+      luaL_error (L, e.what ());
+      #endif
+      return 0;
     }
   }
 };
@@ -911,30 +917,36 @@ struct Invoke <void, Params, startParam>
   template <class Fn>
   static int run (lua_State* L, Fn& fn)
   {
-    try
+    __try
     {
       ArgList <Params, startParam> args (L);
       FuncTraits <Fn>::call (fn, args);
       return 0;
     }
-    catch (const std::exception& e)
+    __catch (const std::exception& e)
     {
-      return luaL_error (L, e.what ());
+      #if __cpp_exceptions
+      luaL_error (L, e.what ());
+      #endif
+      return 0;
     }
   }
 
   template <class T, class MemFn>
   static int run (lua_State* L, T* object, const MemFn& fn)
   {
-    try
+    __try
     {
       ArgList <Params, startParam> args (L);
       FuncTraits <MemFn>::call (object, fn, args);
       return 0;
     }
-    catch (const std::exception& e)
+    __catch (const std::exception& e)
     {
-      return luaL_error (L, e.what ());
+      #if __cpp_exceptions
+      luaL_error (L, e.what ());
+      #endif
+      return 0;
     }
   }
 };

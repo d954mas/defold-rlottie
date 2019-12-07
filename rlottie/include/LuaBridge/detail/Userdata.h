@@ -33,7 +33,7 @@
 
 #include <cassert>
 #include <stdexcept>
-
+#include "fix_exceptions.h"
 
 namespace luabridge {
 
@@ -271,7 +271,7 @@ public:
     lua_rawgetp (L, LUA_REGISTRYINDEX, ClassInfo <T>::getClassKey ());
     if (!lua_istable (L, -1))
     {
-      throw std::logic_error ("The class is not registered in LuaBridge");
+      __throw std::logic_error ("The class is not registered in LuaBridge");
     }
     lua_setmetatable (L, -2);
     return ud;
@@ -326,7 +326,7 @@ private:
     lua_rawgetp (L, LUA_REGISTRYINDEX, key);
     if (!lua_istable (L, -1))
     {
-      throw std::logic_error ("The class is not registered in LuaBridge");
+      __throw std::logic_error ("The class is not registered in LuaBridge");
     }
     lua_setmetatable (L, -2);
   }

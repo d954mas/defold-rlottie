@@ -33,6 +33,8 @@
 #include <LuaBridge/detail/FuncTraits.h>
 
 #include <string>
+#include "fix_exceptions.h"
+
 
 namespace luabridge {
 
@@ -457,13 +459,15 @@ struct CFunc
   {
     C* const c = Userdata::get <C> (L, 1, true);
     T C::** mp = static_cast <T C::**> (lua_touserdata (L, lua_upvalueindex (1)));
-    try
+    __try
     {
       Stack <T&>::push (L, c->**mp);
     }
-    catch (const std::exception& e)
-    {
+    __catch(const std::exception& e)
+    { 
+      #if __cpp_exceptions
       luaL_error (L, e.what ());
+      #endif
     }
     return 1;
   }
@@ -480,13 +484,15 @@ struct CFunc
   {
     C* const c = Userdata::get <C> (L, 1, false);
     T C::** mp = static_cast <T C::**> (lua_touserdata (L, lua_upvalueindex (1)));
-    try
+    __try
     {
       c->**mp = Stack <T>::get (L, 2);
     }
-    catch (const std::exception& e)
+    __catch (const std::exception& e)
     {
+      #if __cpp_exceptions
       luaL_error (L, e.what ());
+      #endif
     }
     return 0;
   }

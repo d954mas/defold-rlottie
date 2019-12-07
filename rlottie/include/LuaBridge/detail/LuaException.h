@@ -31,7 +31,7 @@
 
 #include <exception>
 #include <string>
-
+#include "fix_exceptions.h"
 namespace luabridge {
 
 class LuaException : public std::exception 
@@ -86,7 +86,7 @@ public:
   template <class Exception>
   static void Throw (Exception e)
   {
-    throw e;
+    __throw e;
   }
 
   //----------------------------------------------------------------------------
@@ -128,7 +128,7 @@ protected:
 private:
   static int throwAtPanic (lua_State* L)
   {
-    throw LuaException (L, -1);
+    __throw LuaException (L, -1);
   }
 };
 
