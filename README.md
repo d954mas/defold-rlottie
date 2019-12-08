@@ -9,7 +9,9 @@ More info about Rlottie: https://github.com/Samsung/rlottie
 
 Rlottie draw animation in buffer. So it is slow.
 
-##Examples
+Rlottie commit https://github.com/Samsung/rlottie/commit/87f485e2247925ceaead99c4bca997e4c44e3a20
+
+## Examples
 
 ![](https://github.com/d954mas/defold-rlottie/blob/master/.Gifs/1.gif)
 ![](https://github.com/d954mas/defold-rlottie/blob/master/.Gifs/2.gif)
