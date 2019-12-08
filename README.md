@@ -9,6 +9,11 @@ More info about Rlottie: https://github.com/Samsung/rlottie
 
 Rlottie draw animation in buffer. So it is slow.
 
+##Examples
+
+![](https://github.com/d954mas/defold-rlottie/blob/master/.Gifs/1.gif)
+![](https://github.com/d954mas/defold-rlottie/blob/master/.Gifs/2.gif)
+
 ## Installation
 
 You can use Rlottie in your own project by adding this project as a Defold library dependency. Open your game.project file and in the dependencies field under project add:
@@ -74,6 +79,7 @@ Also do not change texture for sprite if it use atlas. Because sprite will be us
 
  
 ## Demo
+Demo use 1000x1000 buffer. So you can see that some animations are slow.
 
 https://d954mas.github.io/defold-rlottie/
 
