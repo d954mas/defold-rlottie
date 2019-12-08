@@ -14,15 +14,6 @@
 
 using namespace luabridge;
 
-static int LuaTest(lua_State* L){
-    int width = (int)luaL_checknumber(L, 1);
-    int height = (int)luaL_checknumber(L, 2);
-    dmScript::LuaHBuffer* buffer = dmScript::CheckBuffer(L, 3);
-    RlottieTest(width,height,buffer);
-
-    return 0;
-}
-
 static rlottie::Animation* AnimationLoadFromData(lua_State* L){
     std::string name = luaL_checkstring(L, 1);
     std::string key = lua_tostring(L, 2);
@@ -42,7 +33,6 @@ static rlottie::Surface SurfaceCreate(int w, int h, lua_State* L){
 static void RlottieBind(lua_State* L){
      getGlobalNamespace (L)
         .beginNamespace ("rlottie")
-        .addFunction ("test", LuaTest)
         .beginClass<VSize>("VSize")
             .addProperty ("w", &VSize::width,&VSize::setWidth)
             .addProperty ("h", &VSize::height,&VSize::setHeight)

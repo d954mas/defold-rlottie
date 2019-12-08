@@ -110,7 +110,8 @@ local function load_anim(self,key)
 end
 
 function init(self)
-	self.buffer = buffer.create(1000 * 1000, -- size of the buffer width*height
+	local w,h = 1000,1000
+	self.buffer = buffer.create(w * h, -- size of the buffer width*height
 			{{
 				 name = hash("my_buffer"),
 				 type = buffer.VALUE_TYPE_UINT8,
@@ -119,13 +120,13 @@ function init(self)
 	--r
 	self.resource_path = go.get("#sprite", "texture0")
 	self.header = {
-		width = 1000,
-		height = 1000,
+		width = w,
+		height = h,
 		type = resource.TEXTURE_TYPE_2D,
 		format = resource.TEXTURE_FORMAT_RGBA,
 		num_mip_maps = 1
 	}
-	self.surface = rlottie.surface_create(1000,1000,self.buffer)
+	self.surface = rlottie.surface_create(w,h,self.buffer)
 	self.time = 0
 	load_anim(self,RESOURCES[RESOURCES_CURRENT])
 end
