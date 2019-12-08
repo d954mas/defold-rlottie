@@ -1,0 +1,17 @@
+Licensing
+
+defold-rlottie basically comes with LGPL-v2.1 license(licenses/COPYING.LGPL)
+but some parts of shared code are covered by different licenses. Listed
+below are the folder names and the license file covering it. Note that this
+license would cover all of the source invovled in each folders, unless
+specifically noted otherwise. So please refer to these imported project sources
+for details.
+
+Dependencies and licenses:
+
+rlottie/src/lottie/                    licenses/COPYING.RLOTTIE 
+rlottie/src/vector/                    licenses/COPYING.LGPL
+rlottie/src/freetype                   licenses/COPYING.FTL
+rlottie/src/pixman                     licenses/COPYING.PIX
+rlottie/src/stb                        licenses/COPYING.STB
+rlottie/include/rapidjson              licenses/COPYING.RPD
